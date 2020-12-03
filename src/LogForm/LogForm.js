@@ -1,43 +1,54 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 
 const arrayOfEntries = []; //testing
 
 function LogForm() {
-	const [moodRating, setMoodRating] = useState('');
-	const [date, setDate] = useState('');
-
-	//Ugly as sin. Preventing useEffect from firing at load.
-	const didMountRef = useRef(false);
-
-	useEffect(() => {
-		if (didMountRef.current === true) {
-			const newEntry = new Rating(moodRating, date);
-			arrayOfEntries.push(newEntry); //testing
-			console.log(arrayOfEntries);
-		} else {
-			didMountRef.current = true;
-		}
-	});
+	const [moodRating, setMoodRating] = useState();
+	const [eventNote, setEventNote] = useState();
 
 	function Rating() {
 		this.moodRating = moodRating;
+		this.eventNote = eventNote;
 		this.date = Date(Date.now);
 	}
 
-	const handleChange = (event) => {
-		setMoodRating(event.target.value);
-		setDate();
+	const logIt = (event) => {
+		event.preventDefault();
+		const newEntry = new Rating();
+		arrayOfEntries.push(newEntry); //testing
+		console.log(arrayOfEntries); // testing;
 	};
 
 	return (
 		<>
-			<select id={'moodDropdown'} onChange={handleChange}>
-				<option value={0}>Please make a selection</option>
-				<option value={1}>1 - Worst</option>
-				<option value={2}>2</option>
-				<option value={3}>3 - Best</option>
-			</select>
-			<p>{moodRating}</p>
+			<form>
+				<div>
+					<label>
+						How are you feeling today?
+						<select
+							id={'moodDropdown'}
+							name={'moodDropdown'}
+							onChange={(event) => setMoodRating(event.target.value)}>
+							<option value={''}>Please make a selection</option>
+							<option value={'Great!'}>Great!</option>
+							<option value={'Good'}>Good</option>
+							<option value={'Okay'}>Okay</option>
+							<option value={'Bad'}>Bad</option>
+							<option value={'Terrible!'}>Terrible!</option>
+						</select>
+					</label>
+				</div>
+				<div>
+					<label>
+						Anything you'd like to note about the day?
+						<textarea
+							id={'dayNote'}
+							onChange={(event) => setEventNote(event.target.value)}
+						/>
+					</label>
+				</div>
+				<button onClick={logIt}>Log it!</button>
+			</form>
 		</>
 	);
 }
