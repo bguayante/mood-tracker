@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 
-const arrayOfEntries = []; //testing
-
 function LogForm() {
-	const [moodRating, setMoodRating] = useState();
-	const [eventNote, setEventNote] = useState();
+	const [moodRating, setMoodRating] = useState(null);
+	const [eventNote, setEventNote] = useState(null);
 
 	function Rating() {
 		this.moodRating = moodRating;
@@ -12,9 +10,12 @@ function LogForm() {
 		this.date = Date(Date.now);
 	}
 
+	const arrayOfEntries = []; //testing
+
 	const logIt = (event) => {
 		event.preventDefault();
 		const newEntry = new Rating();
+		// convert to json, send to api //
 		arrayOfEntries.push(newEntry); //testing
 		console.log(arrayOfEntries); // testing;
 	};
@@ -26,10 +27,10 @@ function LogForm() {
 					<label>
 						How are you feeling today?
 						<select
-							id={'moodDropdown'}
-							name={'moodDropdown'}
-							onChange={(event) => setMoodRating(event.target.value)}>
-							<option value={''}>Please make a selection</option>
+							id={'moodRatingDropdown'}
+							onChange={(event) => setMoodRating(event.target.value)}
+							required={true}>
+							<option>Please make a selection</option>
 							<option value={'Great!'}>Great!</option>
 							<option value={'Good'}>Good</option>
 							<option value={'Okay'}>Okay</option>
@@ -42,12 +43,14 @@ function LogForm() {
 					<label>
 						Anything you'd like to note about the day?
 						<textarea
-							id={'dayNote'}
+							id={'eventNoteText'}
 							onChange={(event) => setEventNote(event.target.value)}
 						/>
 					</label>
 				</div>
-				<button onClick={logIt}>Log it!</button>
+				<div>
+					<button onClick={logIt}>Log it!</button>
+				</div>
 			</form>
 		</>
 	);
