@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import LogForm from '../LogForm/LogForm.js';
 import SignUp from '../Login/SignUp';
-import SignIn from '../Login/SignIn'
-
-
+import SignInExample from '../Login/SignInExample'
 
 class Home extends Component {
 	render() {
@@ -32,7 +30,7 @@ class Home extends Component {
 							<SignUp />
 						</Route>
 						<Route path='/signIn'>
-							<SignIn />
+							<SignInExample />
 						</Route>
 						<Route path='/log'>
 							<LogForm />

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-function SignUp() {
+function SignIn() {
 
     const [username, setUserName] = useState('');
     const [password, setPassWord] = useState('');
     
     const submitSignIn = (event) => {
         event.preventDefault()
-        alert('Signed In!')
+        alert('Signed In!') 						//testing
     }
 
 
@@ -37,4 +37,4 @@ function SignUp() {
     )   
 }
 
-export default SignUp;
+export default SignIn;
