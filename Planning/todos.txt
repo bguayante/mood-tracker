@@ -1,12 +1,18 @@
+home -> signin -> logForm -> questions -> summary
+
+authentication/session control
+custom fields
+
 home
     views
         signin
             signup
-
-authentication/session control
-
-logform
-    custom fields
-    views
-        log question
-        summary/submit
+        logform
+            views
+                log question
+                summary/submit
+        logreview
+            views
+                entries
+                    by date
+                    by question

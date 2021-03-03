@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import LogForm from '../LogForm/LogForm.js';
 import SignUp from '../Login/SignUp';
-import SignInExample from '../Login/SignInExample'
+import SignInExample from '../Login/SignIn'
 
 class Home extends Component {
 	render() {
